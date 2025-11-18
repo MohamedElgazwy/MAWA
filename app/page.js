@@ -1,11 +1,16 @@
-import React from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import HeroSection from "./components/HeroSection";
 
-const page = () => {
+export default function Home() {
   return (
-    <div>
-      <h1>hello world </h1>
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-grow">
+        <HeroSection />
+        {/* We'll add more sections here */}
+      </main>
+      <Footer />
     </div>
   );
-};
-
-export default page;
+}
