@@ -119,104 +119,99 @@ export default function Header() {
             )}
           </button>
         </div>
-
-        {/* Mobile Navigation Menu */}
-        <div
-          className={`md:hidden transition-all duration-300 ease-in-out ${
-            isMenuOpen
-              ? "max-h-96 opacity-100"
-              : "max-h-0 opacity-0 overflow-hidden"
-          }`}
-        >
-          <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-200">
-            {/* Navigation Links */}
-            <button
-              onClick={() => handleNavigation("/Search")}
-              className="block w-full text-left px-3 py-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
-            >
-              Buy Properties
-            </button>
-            <button
-              onClick={() => handleNavigation("/Search?type=rent")}
-              className="block w-full text-left px-3 py-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
-            >
-              Rent Properties
-            </button>
-            <button
-              onClick={() => handleNavigation("#")}
-              className="block w-full text-left px-3 py-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
-            >
-              Real Estate Agencies
-            </button>
-            <button
-              onClick={() => handleNavigation("#")}
-              className="block w-full text-left px-3 py-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
-            >
-              About MAWA
-            </button>
-
-            {/* Divider */}
-            <div className="border-t border-gray-200 my-2"></div>
-
-            {/* Language Selector - Mobile */}
-            <div className="px-3 py-2">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Language
-              </label>
-              <select
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-                className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-primary-500"
-              >
-                <option value="en">English</option>
-                <option value="ar">العربية</option>
-              </select>
-            </div>
-
-            {/* Divider */}
-            <div className="border-t border-gray-200 my-2"></div>
-
-            {/* Auth Buttons - Mobile */}
-            <div className="px-3 py-2 space-y-3">
-              <button
-                onClick={() => handleAuth("login")}
-                className="block w-full text-left px-3 py-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
-              >
-                Login to Account
-              </button>
-              <button
-                onClick={() => handleAuth("signup")}
-                className="block w-full text-center px-3 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-semibold"
-              >
-                Create Account
-              </button>
-            </div>
-
-            {/* Additional Mobile Links */}
-            <div className="border-t border-gray-200 my-2"></div>
-            <button
-              onClick={() => handleNavigation("/Add-property")}
-              className="block w-full text-left px-3 py-3 text-primary-600 hover:bg-primary-50 rounded-lg transition-colors font-semibold"
-            >
-              + List Your Property
-            </button>
-            <button
-              onClick={() => handleNavigation("/Dashboard")}
-              className="block w-full text-left px-3 py-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
-            >
-              My Dashboard
-            </button>
-          </div>
-        </div>
       </div>
 
-      {/* Overlay for mobile menu */}
-      {isMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
-          onClick={() => setIsMenuOpen(false)}
-        />
-      )}
+      {/* Mobile Navigation Menu - FIXED DESIGN */}
+      <div
+        // Changed positioning to absolute overlay
+        className={`md:hidden transition-all duration-300 ease-in-out absolute top-16 w-full left-0 z-40 bg-white shadow-lg ${
+          isMenuOpen
+            ? "max-h-screen opacity-100"
+            : "max-h-0 opacity-0 overflow-hidden"
+        }`}
+        aria-hidden={!isMenuOpen}
+      >
+        {/* Added standard padding container to align content with header bar */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-2 pb-3 space-y-1 border-t border-gray-200">
+          {/* Navigation Links */}
+          <button
+            onClick={() => handleNavigation("/Search")}
+            className="block w-full text-left px-3 py-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
+          >
+            Buy Properties
+          </button>
+          <button
+            onClick={() => handleNavigation("/Search?type=rent")}
+            className="block w-full text-left px-3 py-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
+          >
+            Rent Properties
+          </button>
+          <button
+            onClick={() => handleNavigation("#")}
+            className="block w-full text-left px-3 py-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
+          >
+            Real Estate Agencies
+          </button>
+          <button
+            onClick={() => handleNavigation("#")}
+            className="block w-full text-left px-3 py-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
+          >
+            About MAWA
+          </button>
+
+          {/* Divider */}
+          <div className="border-t border-gray-200 my-2"></div>
+
+          {/* Language Selector - Mobile */}
+          <div className="px-3 py-2">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Language
+            </label>
+            <select
+              value={language}
+              onChange={(e) => setLanguage(e.target.value)}
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:border-primary-500"
+            >
+              <option value="en">English</option>
+              <option value="ar">العربية</option>
+            </select>
+          </div>
+
+          {/* Divider */}
+          <div className="border-t border-gray-200 my-2"></div>
+
+          {/* Auth Buttons - Mobile */}
+          <div className="px-3 py-2 space-y-3">
+            <button
+              onClick={() => handleAuth("login")}
+              className="block w-full text-left px-3 py-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
+            >
+              Login to Account
+            </button>
+            <button
+              onClick={() => handleAuth("signup")}
+              className="block w-full text-center px-3 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-semibold"
+            >
+              Create Account
+            </button>
+          </div>
+
+          {/* Additional Mobile Links */}
+          <div className="border-t border-gray-200 my-2"></div>
+          <button
+            onClick={() => handleNavigation("/Add-property")}
+            className="block w-full text-left px-3 py-3 text-primary-600 hover:bg-primary-50 rounded-lg transition-colors font-semibold"
+          >
+            + List Your Property
+          </button>
+          <button
+            onClick={() => handleNavigation("/Dashboard")}
+            className="block w-full text-left px-3 py-3 text-gray-700 hover:text-primary-600 hover:bg-gray-50 rounded-lg transition-colors"
+          >
+            My Dashboard
+          </button>
+        </div>
+      </div>
     </header>
   );
 }
