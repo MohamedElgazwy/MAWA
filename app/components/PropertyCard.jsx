@@ -7,7 +7,6 @@ export default function PropertyCard({ property }) {
   return (
     <Link href={`/Properties/${property.id}`}>
       <div className="group bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-        {/* قسم الصورة */}
         <div className="relative h-64 overflow-hidden">
           <div className="absolute inset-0 bg-slate-200 animate-pulse" />
           <img
@@ -53,7 +52,6 @@ export default function PropertyCard({ property }) {
           </button>
         </div>
 
-        {/* المحتوى */}
         <div className="p-5">
           <h3 className="text-lg font-bold text-slate-800 line-clamp-1 group-hover:text-indigo-600 transition-colors mb-2">
             {property.title}

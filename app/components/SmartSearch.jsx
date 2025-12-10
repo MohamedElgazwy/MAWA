@@ -101,7 +101,6 @@ export default function SmartSearch() {
                 {msg.content}
               </div>
 
-              {/* Property Cards (If results exist) */}
               {msg.results && (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-2 w-full">
                   {msg.results.map((prop) => (
@@ -131,7 +130,6 @@ export default function SmartSearch() {
           </div>
         ))}
 
-        {/* Typing Indicator */}
         {isTyping && (
           <div className="flex justify-start">
             <div className="bg-white p-4 rounded-2xl rounded-bl-none border border-gray-100 shadow-sm flex gap-2">
