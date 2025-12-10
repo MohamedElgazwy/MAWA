@@ -282,7 +282,6 @@ export default function AddProperty() {
                         </div>
                       </label>
 
-                      {/* الخيار الثاني: Premium/Featured */}
                       <label
                         className={`relative border-2 rounded-xl p-4 cursor-pointer transition-all hover:shadow-md flex items-start gap-4 ${
                           formData.design === "featured"
