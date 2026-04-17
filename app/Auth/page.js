@@ -27,41 +27,36 @@ export default function AuthPage() {
     setError("");
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError("");
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsLoading(true);
+  setError("");
 
-    try {
-      if (isLogin) {
-        const response = await api.post("/auth/login", {
+  try {
+    // 🔥 Mock response بدل API
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    const fakeResponse = {
+      data: {
+        token: "fake-token-123",
+        user: {
+          name: "Mohamed",
           email: formData.email,
-          password: formData.password,
-        });
+          role: "Seeker",
+        },
+      },
+    };
 
-        localStorage.setItem("token", response.data.token);
-        localStorage.setItem("user", JSON.stringify(response.data.user));
+    localStorage.setItem("authToken", fakeResponse.data.token);
+    localStorage.setItem("user", JSON.stringify(fakeResponse.data.user));
 
-        if (response.data.user.role === "Admin") router.push("/admin/dashboard");
-        else router.push("/dashboard");
-      } else {
-        await api.post("/auth/register-init", {
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          password: formData.password,
-          role: formData.role,
-        });
-
-        setStep(2);
-      }
-    } catch (err) {
-      console.error(err);
-      setError(err.response?.data?.message || "Something went wrong. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    router.push("/Dashboard");
+  } catch (err) {
+    setError("Something went wrong.");
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const handleVerifyOTP = async (e) => {
     e.preventDefault();
@@ -76,7 +71,7 @@ export default function AuthPage() {
 
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));
-      router.push("/dashboard");
+      router.push("/Dashboard");
     } catch {
       setError("Invalid OTP. Please check code and try again.");
     } finally {
