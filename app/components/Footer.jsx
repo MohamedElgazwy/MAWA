@@ -8,9 +8,9 @@ export default function Footer() {
           <div>
             <div className="mb-4 flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 text-sm font-bold text-white">
-                M
+                🏠
               </div>
-              <span className="text-lg font-bold text-slate-900">MAWA</span>
+              <span className="text-lg font-bold text-slate-900">Darak</span>
             </div>
             <p className="text-sm leading-6 text-slate-600">
               Broker-free real estate with verified listings, owner-direct communication, and AI-powered discovery.

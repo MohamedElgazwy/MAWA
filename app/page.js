@@ -74,7 +74,7 @@ export default function Home() {
         <section className="section-padding bg-white">
           <div className="container-shell">
             <div className="mb-10 text-center">
-              <h2 className="text-3xl font-bold text-slate-900">How MAWA Works</h2>
+              <h2 className="text-3xl font-bold text-slate-900">How Darak Works</h2>
               <p className="mt-2 text-slate-600">Three simple steps to discover your next home.</p>
             </div>
             <div className="grid gap-6 md:grid-cols-3">
