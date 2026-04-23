@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
 const navLinks = [
-  { name: "Buy", path: "/Search", query: { type: "sale" } },
-  { name: "Rent", path: "/Search", query: { type: "rent" } },
-  { name: "Agencies", path: "/Agencies" },
-  { name: "About", path: "/About" },
+  { name: "شراء", path: "/Search", query: { type: "sale" } },
+  { name: "إيجار", path: "/Search", query: { type: "rent" } },
+  { name: "الوكالات", path: "/Agencies" },
+  { name: "من نحن", path: "/About" },
 ];
 
 export default function Header() {
@@ -18,14 +18,12 @@ export default function Header() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // ✅ Handle scroll effect
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // ✅ Active link logic (supports query params)
   const isActive = (link) => {
     if (link.path !== pathname) return false;
 
@@ -38,10 +36,8 @@ export default function Header() {
     return true;
   };
 
-  // ✅ Build href with query
   const buildHref = (link) => {
     if (!link.query) return link.path;
-
     const params = new URLSearchParams(link.query).toString();
     return `${link.path}?${params}`;
   };
@@ -81,11 +77,11 @@ export default function Header() {
               >
                 {link.name}
 
-                {/* 🔥 underline animation */}
+                {/* underline */}
                 <span
-                  className={`absolute left-0 -bottom-1 h-[2px] w-full bg-indigo-600 transition-all duration-300 ${
-                    isActive(link) ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                  } origin-left`}
+                  className={`absolute right-0 -bottom-1 h-[2px] w-full bg-indigo-600 transition-all duration-300 ${
+                    isActive(link) ? "scale-x-100" : "scale-x-0"
+                  } origin-right`}
                 />
               </Link>
             ))}
@@ -97,13 +93,13 @@ export default function Header() {
               href="/Auth"
               className="btn-secondary px-4 py-2.5 text-sm hover:scale-[1.03] transition"
             >
-              Sign In
+              تسجيل الدخول
             </Link>
             <Link
               href="/Add-property"
               className="btn-primary px-4 py-2.5 text-sm shadow-md hover:shadow-lg hover:scale-[1.03] transition"
             >
-              List Property
+              أضف عقارك
             </Link>
           </div>
 
@@ -127,7 +123,7 @@ export default function Header() {
           isMenuOpen ? "max-h-[400px] border-t border-slate-200" : "max-h-0"
         }`}
       >
-        <div className="container-shell py-4 space-y-2 bg-white">
+        <div className="container-shell py-4 space-y-2 bg-white text-right">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -144,11 +140,11 @@ export default function Header() {
           ))}
 
           <div className="grid grid-cols-2 gap-2 pt-3">
-            <Link href="/Auth" className="btn-secondary text-center py-2">
-              Sign In
+            <Link href="/Auth/login" className="btn-secondary text-center py-2">
+              تسجيل الدخول
             </Link>
             <Link href="/Add-property" className="btn-primary text-center py-2">
-              List
+              إضافة
             </Link>
           </div>
         </div>

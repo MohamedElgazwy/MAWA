@@ -4,14 +4,17 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
   const pages = Array.from({ length: totalPages }, (_, index) => index + 1);
 
   return (
-    <div className="mt-10 flex items-center justify-center gap-2">
+    <div className="mt-10 flex items-center justify-center gap-2 flex-row-reverse">
+      
+      {/* Next (يمين في العربي) */}
       <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
+        onClick={() => onPageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
         className="btn-secondary px-3 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50"
       >
-        Previous
+        التالي
       </button>
+
       {pages.map((page) => (
         <button
           key={page}
@@ -25,12 +28,14 @@ export default function Pagination({ currentPage, totalPages, onPageChange }) {
           {page}
         </button>
       ))}
+
+      {/* Previous (شمال في العربي) */}
       <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
+        onClick={() => onPageChange(currentPage - 1)}
+        disabled={currentPage === 1}
         className="btn-secondary px-3 py-2 text-sm disabled:cursor-not-allowed disabled:opacity-50"
       >
-        Next
+        السابق
       </button>
     </div>
   );

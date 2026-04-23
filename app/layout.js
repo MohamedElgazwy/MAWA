@@ -9,11 +9,11 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const local = 'ar';
   return (
-    <html lang="en">
+    <html lang={local} dir={local === 'ar' ? 'rtl' : 'ltr'}>
       <body className="antialiased flex min-h-screen flex-col">
 
-        {/* 🔥 حل المشكلة هنا */}
         <Suspense fallback={null}>
           <Header />
         </Suspense>
