@@ -7,7 +7,8 @@ import Image from "next/image";
 const tabs = [
   { id: "buy", label: "شراء", value: "sale" },
   { id: "rent", label: "إيجار", value: "rent" },
-  { id: "commercial", label: "تجاري", value: "commercial" },
+  // can be added.
+  // { id: "commercial", label: "تجاري", value: "commercial" },
 ];
 
 export default function HeroSection() {
