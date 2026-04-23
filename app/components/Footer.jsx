@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 export default function Footer() {
+  // footer been added.
   return (
     <footer className="border-t border-slate-200 bg-white text-right">
       <div className="container-shell py-14">
