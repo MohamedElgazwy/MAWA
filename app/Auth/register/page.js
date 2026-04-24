@@ -67,9 +67,9 @@ export default function RegisterPage() {
             onChange={handleChange}
             className="w-full border rounded-xl px-3 py-2"
           >
-            <option value="Seeker">باحث</option>
-            <option value="Owner">مالك</option>
-            <option value="Agency">وكالة</option>
+            <option value="Seeker">مستخدم</option>
+            <option value="Owner">ادمن</option>
+            <option value="Agency">شركة</option>
           </select>
 
           <input
