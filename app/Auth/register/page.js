@@ -43,7 +43,14 @@ export default function RegisterPage() {
 
           <input
             name="name"
-            placeholder="الاسم الكامل"
+            placeholder="الاسم الاول"
+            onChange={handleChange}
+            className="w-full border rounded-xl px-3 py-2 text-right"
+          />
+
+          <input
+            name="name"
+            placeholder="الاسم الثانى"
             onChange={handleChange}
             className="w-full border rounded-xl px-3 py-2 text-right"
           />
@@ -67,9 +74,8 @@ export default function RegisterPage() {
             onChange={handleChange}
             className="w-full border rounded-xl px-3 py-2"
           >
-            <option value="Seeker">باحث</option>
-            <option value="Owner">مالك</option>
-            <option value="Agency">وكالة</option>
+            <option value="Seeker">مستخدم</option>
+            <option value="Agency">شركة</option>
           </select>
 
           <input
