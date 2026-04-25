@@ -35,7 +35,7 @@ export default function RegisterPage() {
 
   return (
     <div className="min-h-screen mt-11 flex items-center justify-center bg-slate-50 text-right">
-      <div className="surface-card p-8 w-full max-w-md">
+      <div className="surface-card px-8 py-4 w-full max-w-md">
 
         <h1 className="text-2xl font-bold mb-6">إنشاء حساب</h1>
 
