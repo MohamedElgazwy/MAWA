@@ -32,16 +32,22 @@ export default function AgencyPageBuilder() {
     },
   ];
 
+  const handleTemplateSelect = (template) => {
+    setSelectedTemplate(template);
+  };
+
   const handleCreatePage = async () => {
+    if (!selectedTemplate) return;
+
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       if (isRegistrationFlow) {
-        router.push("/Auth/login?newAgency=1");
+        router.push(`/Auth/login?newAgency=1&template=${selectedTemplate.id}`);
         return;
       }
 
-      router.push("/Dashboard/Agency");
+      router.push(`/Dashboard/Agency?template=${selectedTemplate.id}`);
     }, 2000);
   };
 
@@ -73,10 +79,10 @@ export default function AgencyPageBuilder() {
               {templates.map((template) => (
                 <div
                   key={template.id}
-                  onClick={() => setSelectedTemplate(template)}
+                  onClick={() => handleTemplateSelect(template)}
                   className={`bg-white rounded-2xl shadow-lg cursor-pointer transition hover:-translate-y-2 border-2 ${
                     selectedTemplate?.id === template.id
-                      ? "border-primary-600"
+                      ? "border-indigo-600 ring-2 ring-indigo-100"
                       : "border-transparent"
                   }`}
                 >
@@ -94,6 +100,18 @@ export default function AgencyPageBuilder() {
                         {template.price} جنيه
                       </span>
                     </div>
+
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleTemplateSelect(template);
+                        setStep(2);
+                      }}
+                      className="w-full mt-4 rounded-lg border border-indigo-600 text-indigo-600 py-2 font-semibold hover:bg-indigo-50"
+                    >
+                      اختيار هذا التصميم
+                    </button>
 
                     <ul className="text-sm text-gray-500 space-y-2">
                       {template.features.map((f, i) => (
@@ -125,7 +143,7 @@ export default function AgencyPageBuilder() {
               <button
                 onClick={handleCreatePage}
                 disabled={loading}
-                className="w-full bg-primary-600 text-white py-4 rounded-xl font-bold"
+                className="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold"
               >
                 {loading ? "جارٍ الدفع..." : "💳 الدفع وإنشاء الصفحة"}
               </button>
