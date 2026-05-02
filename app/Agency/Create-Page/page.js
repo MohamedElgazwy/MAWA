@@ -1,13 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function AgencyPageBuilder() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [selectedTemplate, setSelectedTemplate] = useState(null);
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
+  const isRegistrationFlow = searchParams.get("from") === "registration";
 
   const templates = [
     {
@@ -34,7 +36,12 @@ export default function AgencyPageBuilder() {
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      router.push("/dashboard/agency");
+      if (isRegistrationFlow) {
+        router.push("/Auth/login?newAgency=1");
+        return;
+      }
+
+      router.push("/Dashboard/Agency");
     }, 2000);
   };
 
@@ -52,6 +59,11 @@ export default function AgencyPageBuilder() {
             <p className="mt-2 text-gray-600">
               اختر التصميم المناسب الذي يعكس هوية شركتك
             </p>
+            {isRegistrationFlow && (
+              <p className="mt-4 inline-block bg-indigo-50 text-indigo-700 px-4 py-2 rounded-xl text-sm">
+                خطوة أخيرة بعد التسجيل: اختر أحد 3 تصاميم لتفعيل صفحة الشركة.
+              </p>
+            )}
           </div>
 
           {/* Step 1 */}
