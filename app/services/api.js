@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || "https://darak.runasp.net/api",
+  baseURL: process.env.NEXT_PUBLIC_API_URL || "/api",
   timeout: 15000,
   headers: {
     "Content-Type": "application/json",
@@ -62,19 +62,35 @@ const firstSuccess = async (requests) => {
 
 export const authApi = {
   async login(payload) {
-    const res = await firstSuccess([
-      () => api.post("/Auth/login", payload),
-      () => api.post("/auth/login", payload),
-      () => api.post("/Account/login", payload),
-    ]);
+    const res = await api.post("/Auth/Login", payload);
     return res.data;
   },
   async register(payload) {
-    const res = await firstSuccess([
-      () => api.post("/Auth/register", payload),
-      () => api.post("/auth/register", payload),
-      () => api.post("/Account/register", payload),
-    ]);
+    const res = await api.post("/Auth/Register", payload);
+    return res.data;
+  },
+  async confirmEmail(payload) {
+    const res = await api.post("/Auth/ConfirmEmail", payload);
+    return res.data;
+  },
+  async resendConfirmEmail(payload) {
+    const res = await api.post("/Auth/ResendConfirmEmail", payload);
+    return res.data;
+  },
+  async refresh(payload) {
+    const res = await api.post("/Auth/Refresh", payload);
+    return res.data;
+  },
+  async revokeRefreshToken(payload) {
+    const res = await api.post("/Auth/RevokeRefreshToken", payload);
+    return res.data;
+  },
+  async forgetPassword(payload) {
+    const res = await api.post("/Auth/ForgetPassword", payload);
+    return res.data;
+  },
+  async resetPassword(payload) {
+    const res = await api.post("/Auth/ResetPassword", payload);
     return res.data;
   },
 };
@@ -102,6 +118,21 @@ export const propertyApi = {
       () => api.post("/Property", payload),
       () => api.post("/properties", payload),
     ]);
+    return res.data;
+  },
+};
+
+export const accountApi = {
+  async getMe() {
+    const res = await api.get("/me");
+    return res.data;
+  },
+  async updateInfo(payload) {
+    const res = await api.put("/me/Info", payload);
+    return res.data;
+  },
+  async changePassword(payload) {
+    const res = await api.put("/me/change-password", payload);
     return res.data;
   },
 };
